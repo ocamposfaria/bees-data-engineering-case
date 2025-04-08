@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  spark-master:
+    image: bitnami/spark:${SPARK_VERSION}
+    container_name: spark-master
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    ports:
+      - "8080:8080"  # Spark Web UI
+      - "7077:7077"  # Spark Master Port
+    mem_limit: 500m
+    cpus: 1.0
+    networks:
+      - spark-net
+
+  spark-worker-1:
+    image: bitnami/spark:${SPARK_VERSION}
+    container_name: spark-worker-1
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    depends_on:
+      - spark-master
+    mem_limit: 500m
+    cpus: 1.0
+    networks:
+      - spark-net
+
+#  spark-worker-2:
+#    image: bitnami/spark:${SPARK_VERSION}
+#    container_name: spark-worker-2
+#    environment:
+#      - SPARK_MODE=worker
+#      - SPARK_MASTER_URL=spark://spark-master:7077
+#    depends_on:
+#      - spark-master
+#    networks:
+#      - spark-net
+
+networks:
+  spark-net:
+    driver: bridge
