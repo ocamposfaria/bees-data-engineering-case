@@ -50,8 +50,8 @@ class Breweries:
             response = requests.get(self.META_URL, timeout=10)
             response.raise_for_status()
             metadata = response.json()
-            logging.info("Metadados extraídos com sucesso.")
+            logging.info("Metadata successfully extracted.")
             return metadata
         except requests.RequestException as e:
-            logging.error(f"Erro ao puxar metadados: {e}")
+            logging.error(f"Error while fetching metadata: {e}")
             return {}
