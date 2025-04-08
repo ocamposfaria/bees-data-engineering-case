@@ -16,5 +16,5 @@ services:
     command: server /data --console-address ":9001"
 
 networks:
-  default:
-    name: airflow-minio-net
+  project-net:
+    name: project-net

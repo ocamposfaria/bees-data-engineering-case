@@ -1,2 +1,4 @@
 venv
 deployment/logs
+deployment/airflow/dags/__pycache__
+deployment/airflow/logs

@@ -11,12 +11,12 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
     ports:
-      - "8080:8080"  # Spark Web UI
+      - "8081:8081"  # Spark Web UI
       - "7077:7077"  # Spark Master Port
     mem_limit: 500m
     cpus: 1.0
     networks:
-      - spark-net
+      - project-net
 
   spark-worker-1:
     image: bitnami/spark:${SPARK_VERSION}
@@ -29,19 +29,20 @@ services:
     mem_limit: 500m
     cpus: 1.0
     networks:
-      - spark-net
+      - project-net
 
-#  spark-worker-2:
-#    image: bitnami/spark:${SPARK_VERSION}
-#    container_name: spark-worker-2
-#    environment:
-#      - SPARK_MODE=worker
-#      - SPARK_MASTER_URL=spark://spark-master:7077
-#    depends_on:
-#      - spark-master
-#    networks:
-#      - spark-net
+  spark:
+    image: bitnami/spark:${SPARK_VERSION}
+    container_name: spark
+    entrypoint: sleep infinity  # container "parado" até o Airflow chamar via `docker exec`
+    volumes:
+      - ./spark/spark:/opt/spark  # monta a pasta onde está test_job.py
+    networks:
+      - project-net
+    depends_on:
+      - spark-master
 
 networks:
-  spark-net:
+  project-net:
     driver: bridge
+    name: project-net
