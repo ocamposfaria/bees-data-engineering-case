@@ -11,10 +11,11 @@ services:
       MINIO_ROOT_USER: ROOTUSER
       MINIO_ROOT_PASSWORD: CHANGEME123
     volumes:
-      # Usa variável de ambiente MINIO_DATA_DIR, ou valor default
       - "${MINIO_DATA_DIR:-/mnt/data/minio}:/data"
     command: server /data --console-address ":9001"
+    networks:
+      - project-net
 
 networks:
   project-net:
-    name: project-net
+    external: true

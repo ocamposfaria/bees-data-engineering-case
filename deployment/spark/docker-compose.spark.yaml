@@ -11,7 +11,6 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
       - USER=sparkuser
-      - SPARK_SUBMIT_OPTIONS=--conf spark.hadoop.fs.viewfs.impl.disable.cache=true --conf spark.hadoop.security.authentication=NOSASL
     ports:
       - "8081:8081"  # Spark Web UI
       - "7077:7077"  # Spark Master Port
@@ -27,7 +26,6 @@ services:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark-master:7077
       - USER=sparkuser
-      - SPARK_SUBMIT_OPTIONS=--conf spark.hadoop.fs.viewfs.impl.disable.cache=true --conf spark.hadoop.security.authentication=NOSASL
     depends_on:
       - spark-master
     mem_limit: 500m
@@ -42,7 +40,6 @@ services:
     volumes:
       - ./spark/jobs:/opt/jobs
     environment:
-      - SPARK_SUBMIT_OPTIONS=--conf spark.hadoop.fs.viewfs.impl.disable.cache=true --conf spark.hadoop.security.authentication=NOSASL
     depends_on:
       - spark-master
     networks:
@@ -52,3 +49,4 @@ networks:
   project-net:
     driver: bridge
     name: project-net
+    external: true
