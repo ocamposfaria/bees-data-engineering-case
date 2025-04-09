@@ -11,6 +11,8 @@ default_args = {
     'retry_delay': timedelta(minutes=2),
 }
 
+SPARK_CMD_PRE_DEFINITION = 'docker exec spark spark-submit --conf spark.jars.ivy=/tmp/.ivy2 /opt/jobs/'
+
 with DAG(
     dag_id='001-ingestion-brewery',
     default_args=default_args,
@@ -32,7 +34,7 @@ with DAG(
 
     task_spark_transformation = BashOperator(
         task_id='run_spark_transformation',
-        bash_command='docker exec spark spark-submit --conf spark.jars.ivy=/tmp/.ivy2 /opt/jobs/test_job.py'
+        bash_command=f'{SPARK_CMD_PRE_DEFINITION}test_job.py'
     )
 
     task_extract_breweries
