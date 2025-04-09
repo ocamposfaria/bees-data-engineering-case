@@ -11,6 +11,9 @@ services:
     environment:
       - SPARK_LOCAL_IP=spark-master
       - SPARK_WORKLOAD=master
+    networks:
+      - project-net
+
   spark-worker-a:
     image: our-own-apache-spark:3.4.0
     ports:
@@ -29,6 +32,9 @@ services:
     volumes:
        - ./apps:/opt/spark-apps
        - ./data:/opt/spark-data
+    networks:
+      - project-net
+      
   spark-worker-b:
     image: our-own-apache-spark:3.4.0
     ports:
@@ -47,3 +53,9 @@ services:
     volumes:
         - ./apps:/opt/spark-apps
         - ./data:/opt/spark-data
+    networks:
+      - project-net
+    
+networks:
+  project-net:
+    external: true
