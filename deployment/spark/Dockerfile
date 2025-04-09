@@ -4,6 +4,9 @@ FROM openjdk:11.0.11-jre-slim-buster as builder
 # Add Dependencies for PySpark
 RUN apt-get update && apt-get install -y curl vim wget software-properties-common ssh net-tools ca-certificates python3 python3-pip python3-numpy python3-matplotlib python3-scipy python3-pandas python3-simpy
 
+RUN wget https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar -P /opt/spark/jars/
+RUN wget https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.1026/aws-java-sdk-bundle-1.11.1026.jar -P /opt/spark/jars/
+
 RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1
 
 # Fix the value of PYTHONHASHSEED
@@ -11,7 +14,10 @@ RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 
 ENV SPARK_VERSION=3.4.0 \
 HADOOP_VERSION=3 \
 SPARK_HOME=/opt/spark \
-PYTHONHASHSEED=1
+PYTHONHASHSEED=1 \
+AWS_ACCESS_KEY_ID=ROOTUSER \
+AWS_SECRET_ACCESS_KEY=CHANGEME123
+
 
 # Download and uncompress spark from the apache archive
 RUN wget --no-verbose -O apache-spark.tgz "https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz" \
