@@ -12,14 +12,15 @@ services:
       - SPARK_SSL_ENABLED=no
       - USER=sparkuser
     ports:
-      - "8888:8081"  # Spark Web UI
+      - "8888:8080"  # Spark Web UI
       - "7077:7077"  # Spark Master Port
-    mem_limit: 500m
+    mem_limit: 1g
     cpus: 1.0
     networks:
       - project-net
     volumes:
       - ./spark/jobs:/opt/jobs
+
   spark-worker-1:
     image: bitnami/spark:${SPARK_VERSION}
     container_name: spark-worker-1
@@ -29,7 +30,7 @@ services:
       - USER=sparkuser
     depends_on:
       - spark-master
-    mem_limit: 500m
+    mem_limit: 1g
     cpus: 1.0
     networks:
       - project-net
