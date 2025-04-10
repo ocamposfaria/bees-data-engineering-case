@@ -62,11 +62,13 @@ services:
     volumes:
       - ./apps:/home/jovyan/work
       - ./data:/home/jovyan/data
-      
     environment:
       - JUPYTER_TOKEN=password123
+      - PYSPARK_SUBMIT_ARGS=--packages org.apache.hadoop:hadoop-aws:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.11.1026 pyspark-shell
     depends_on:
       - spark-master
+      - spark-worker-a
+      - spark-worker-b
     networks:
       - project-net
     

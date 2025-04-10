@@ -1,3 +1,4 @@
+/deployment/
 docker network create project-net
 docker compose -f airflow/docker-compose.airflow.yaml --env-file airflow/.env up -d
 docker compose -f spark/docker-compose.spark.yaml --env-file spark/.env up -d
