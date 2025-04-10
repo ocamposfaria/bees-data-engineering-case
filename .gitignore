@@ -2,3 +2,10 @@ venv
 deployment/logs
 deployment/airflow/dags/__pycache__
 deployment/airflow/logs
+deployment/spark/notebooks/.ipynb_checkpoints
+classes/__pycache__
+deployment/spark/notebooks/.ivy2/
+deployment/spark/notebooks/.local/
+deployment/spark/notebooks/.jupyter/
+deployment/spark/notebooks/.npm/
+deployment/spark/notebooks/.ipython/

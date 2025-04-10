@@ -5,8 +5,8 @@ services:
       - "9090:8080"
       - "7077:7077"
     volumes:
-       - ./apps:/opt/spark-apps
-       - ./data:/opt/spark-data
+       - ./notebooks:/opt/spark-apps
+       # - ./data:/opt/spark-data
     environment:
       - SPARK_LOCAL_IP=spark-master
       - SPARK_WORKLOAD=master
@@ -29,8 +29,8 @@ services:
       - SPARK_WORKLOAD=worker
       - SPARK_LOCAL_IP=spark-worker-a
     volumes:
-       - ./apps:/opt/spark-apps
-       - ./data:/opt/spark-data
+       - ./notebooks:/opt/spark-apps
+       # - ./data:/opt/spark-data
     networks:
       - project-net
       
@@ -50,8 +50,8 @@ services:
       - SPARK_WORKLOAD=worker
       - SPARK_LOCAL_IP=spark-worker-b
     volumes:
-        - ./apps:/opt/spark-apps
-        - ./data:/opt/spark-data
+        - ./notebooks:/opt/spark-apps
+        # - ./data:/opt/spark-data
     networks:
       - project-net
 
@@ -60,8 +60,8 @@ services:
     ports:
       - "8888:8888"
     volumes:
-      - ./apps:/home/jovyan/work
-      - ./data:/home/jovyan/data
+      - ./notebooks:/home/jovyan/
+      # - ./data:/home/jovyan/data
     environment:
       - JUPYTER_TOKEN=password123
       - PYSPARK_SUBMIT_ARGS=--packages org.apache.hadoop:hadoop-aws:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.11.1026 pyspark-shell
