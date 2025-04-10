@@ -1,4 +1,3 @@
-version: "3.3"
 services:
   spark-master:
     image: our-own-apache-spark:3.4.0
@@ -53,6 +52,21 @@ services:
     volumes:
         - ./apps:/opt/spark-apps
         - ./data:/opt/spark-data
+    networks:
+      - project-net
+
+  jupyter:
+    image: jupyter/pyspark-notebook:latest
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./apps:/home/jovyan/work
+      - ./data:/home/jovyan/data
+      
+    environment:
+      - JUPYTER_TOKEN=password123
+    depends_on:
+      - spark-master
     networks:
       - project-net
     
