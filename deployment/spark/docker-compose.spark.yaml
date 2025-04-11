@@ -1,6 +1,6 @@
 services:
   spark-master:
-    image: our-own-apache-spark:3.4.0
+    image: our-own-apache-spark
     ports:
       - "9090:8080"
       - "7077:7077"
@@ -14,7 +14,7 @@ services:
       - project-net
 
   spark-worker-a:
-    image: our-own-apache-spark:3.4.0
+    image: our-own-apache-spark
     ports:
       - "9091:8080"
       - "7000:7000"
@@ -35,7 +35,7 @@ services:
       - project-net
       
   spark-worker-b:
-    image: our-own-apache-spark:3.4.0
+    image: our-own-apache-spark
     ports:
       - "9092:8080"
       - "7001:7000"
