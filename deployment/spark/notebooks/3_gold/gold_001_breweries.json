@@ -1,0 +1,28 @@
+{
+    "table_name": "breweries_by_type_location",
+    "columns": [
+        {
+            "name": "brewery_type",
+            "type": "StringType()"
+        },
+        {
+            "name": "city",
+            "type": "StringType()"
+        },
+        {
+            "name": "state_province",
+            "type": "StringType()"
+        },
+        {
+            "name": "country",
+            "type": "StringType()"
+        },
+        {
+            "name": "brewery_count",
+            "type": "LongType()"
+        }
+    ],
+    "data_source": "s3a://datalake/2_silver/001_breweries/breweries/",
+    "output_path": "s3a://datalake/3_gold/001_breweries/breweries_by_type_location/",
+    "description": "Tabela que cont\u00e9m a contagem de cervejarias por tipo, cidade, estado e pa\u00eds."
+}
