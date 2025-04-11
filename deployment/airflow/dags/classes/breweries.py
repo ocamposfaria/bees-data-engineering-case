@@ -12,6 +12,8 @@ class Breweries:
         self.BREWERIES_URL = "https://api.openbrewerydb.org/v1/breweries"
         self.META_URL = "https://api.openbrewerydb.org/v1/breweries/meta"
         self.PER_PAGE = 200
+        self.MAX_RETRIES = 3
+        self.TIMEOUT = 10
 
     def get_all_breweries(self):
         all_breweries = []
@@ -22,14 +24,19 @@ class Breweries:
             url = f"{self.BREWERIES_URL}?per_page={self.PER_PAGE}&page={page}"
             logging.info(f"Solicitando página {page}...")
 
-            try:
-                response = requests.get(url, timeout=10)
-                response.raise_for_status()
-            except requests.RequestException as e:
-                logging.error(f"Erro na requisição da página {page}: {e}")
-                break
+            for attempt in range(1, self.MAX_RETRIES + 1):
+                try:
+                    response = requests.get(url, timeout=self.TIMEOUT)
+                    response.raise_for_status()
+                    data = response.json()
+                    break  
+                except requests.RequestException as e:
+                    logging.warning(f"Tentativa {attempt}/{self.MAX_RETRIES} falhou na página {page}: {e}")
+                    if attempt == self.MAX_RETRIES:
+                        logging.error(f"Erro definitivo na página {page} após {self.MAX_RETRIES} tentativas.")
+                        raise RuntimeError(f"Falha ao extrair a página {page} da API.") from e
+                    time.sleep(20) 
 
-            data = response.json()
             if not data:
                 logging.info("Sem mais dados. Encerrando extração.")
                 break
@@ -39,7 +46,7 @@ class Breweries:
             page += 1
             time.sleep(0.2)
 
-        logging.info(f"Extração finalizada. Total de breweries: {len(all_breweries)}")
+        logging.info(f"Extração finalizada com sucesso. Total de breweries: {len(all_breweries)}")
         return all_breweries
 
     def get_breweries_metadata(self):

@@ -6,13 +6,10 @@ RUN apt-get update && apt-get install -y \
     curl \
     wget \
     unzip \
-    && rm -rf /var/lib/apt/lists/*
-
-# Python setup
-RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
-    && ln -s /usr/bin/python3 /usr/bin/python
+    && ln -s /usr/bin/python3 /usr/bin/python \
+    && rm -rf /var/lib/apt/lists/*
 
 # Environment variables
 ENV SPARK_VERSION=3.4.0 \
@@ -26,14 +23,19 @@ RUN wget --no-verbose -O apache-spark.tgz "https://archive.apache.org/dist/spark
     && tar -xf apache-spark.tgz -C /opt/spark --strip-components=1 \
     && rm apache-spark.tgz
 
-# Download AWS SDK and Hadoop AWS jars directly into spark jars folder
-RUN mkdir -p /opt/spark/jars \
-    && cd /opt/spark/jars \
-    && wget -q https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar \
-    && wget -q https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.1026/aws-java-sdk-bundle-1.11.1026.jar
+# Download AWS SDK, Hadoop AWS and Delta jars directly into spark jars folder
+RUN mkdir -p /opt/spark/jars && \
+    cd /opt/spark/jars && \
+    # Hadoop AWS para integração com S3
+    wget -q https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar && \
+    wget -q https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.1026/aws-java-sdk-bundle-1.11.1026.jar && \
+    # Delta Lake Core 2.4.0 (Scala 2.12)
+    wget -q https://repo1.maven.org/maven2/io/delta/delta-core_2.12/2.4.0/delta-core_2.12-2.4.0.jar && \
+    # Delta Storage
+    wget -q https://repo1.maven.org/maven2/io/delta/delta-storage/2.4.0/delta-storage-2.4.0.jar && \
+    # Delta contribs (opcional, mas disponível)
+    wget -q https://repo1.maven.org/maven2/io/delta/delta-contribs_2.12/2.4.0/delta-contribs_2.12-2.4.0.jar
 
-# Verify the downloads
-RUN ls -la /opt/spark/jars/hadoop-aws-*.jar /opt/spark/jars/aws-java-sdk-*.jar
 
 # Spark environment setup
 ENV SPARK_MASTER_PORT=7077 \
@@ -56,8 +58,9 @@ RUN mkdir -p ${SPARK_LOG_DIR} \
 COPY start-spark.sh /
 
 # Final verification
-RUN echo "Verificando JARs da AWS:" \
+RUN echo "Verificando JARs da AWS e Delta:" \
     && ls -la /opt/spark/jars/*aws* \
+    && ls -la /opt/spark/jars/*delta* \
     && echo "Conteúdo da pasta jars:" \
     && ls -la /opt/spark/jars/
 
