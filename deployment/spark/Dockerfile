@@ -37,6 +37,9 @@ RUN mkdir -p /opt/spark/jars && \
     wget -q https://repo1.maven.org/maven2/io/delta/delta-contribs_2.12/2.4.0/delta-contribs_2.12-2.4.0.jar
 
 
+RUN pip3 install "pyzmq==25.1.1" && pip3 install papermill && pip3 install jupyter && pip3 install nbconvert
+
+
 # Spark environment setup
 ENV SPARK_MASTER_PORT=7077 \
     SPARK_MASTER_WEBUI_PORT=8080 \

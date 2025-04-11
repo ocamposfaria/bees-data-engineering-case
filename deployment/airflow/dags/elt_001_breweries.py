@@ -2,6 +2,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime
 from tasks.tasks_elt_001_breweries import extract_breweries, extract_metadata
+import papermill
 
 with DAG(
     dag_id="elt_001_breweries",
