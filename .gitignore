@@ -13,3 +13,4 @@ deployment/spark/notebooks/.ipython/
 deployment/spark/notebooks/1_bronze/.ipynb_checkpoints
 deployment/spark/notebooks/2_silver/.ipynb_checkpoints
 deployment/spark/notebooks/3_gold/.ipynb_checkpoints
+deployment/airflow/dags/__pycache__
