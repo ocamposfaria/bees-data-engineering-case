@@ -2,6 +2,15 @@ from classes.breweries import Breweries
 from classes.minio import MinioClient
 import logging
 
+def ipynb_command(app_name: str) -> str:
+    ipynb_path = f"/opt/spark-apps/2_silver/{app_name}.ipynb"
+    py_path = f"/opt/spark-apps/2_silver/{app_name}.py"
+    return (
+        f'docker exec spark-spark-master-1 bash -c '
+        f'"jupyter nbconvert --to script {ipynb_path} && '
+        f'/opt/spark/bin/spark-submit --master spark://spark-spark-master-1:7077 local://{py_path}"'
+    )
+
 def bronze_extract_breweries():
     b = Breweries()
     data = b.get_all_breweries()
