@@ -16,13 +16,14 @@ def bronze_extract_metadata():
     logging.info(f"Metadados extraídos: {metadata}")
     MinioClient().upload_json("datalake", "1_bronze/001_breweries/metadata.json", metadata)
 
-def ipynb_command(app_name: str) -> str:
-    ipynb_path = f"/opt/spark-apps/2_silver/{app_name}.ipynb"
-    py_path = f"/opt/spark-apps/2_silver/{app_name}.py"
+def ipynb_command(layer: str, app_name: str) -> str:
+    ipynb_path = f"/opt/spark-apps/{layer}/{app_name}.ipynb"
+    py_path = f"/opt/spark-apps/{layer}/{app_name}.py"
     return (
         f'docker exec spark-spark-master-1 bash -c '
         f'"jupyter nbconvert --to script {ipynb_path} && '
-        f'/opt/spark/bin/spark-submit --master spark://spark-spark-master-1:7077 local://{py_path}"'
+        f'/opt/spark/bin/spark-submit --master spark://spark-spark-master-1:7077 local://{py_path}; '
+        f'status=$?; rm {py_path}; exit $status"'
     )
 
 def publish_metadata():
@@ -33,7 +34,7 @@ def publish_metadata():
 
     if os.path.exists(source_path):
         os.makedirs(os.path.dirname(destination_path), exist_ok=True)
-        shutil.copy(source_path, destination_path)
+        shutil.copyfile(source_path, destination_path)
         print(f"Arquivo copiado para {destination_path}")
     else:
         print(f"Arquivo de origem {source_path} não encontrado.")

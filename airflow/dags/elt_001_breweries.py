@@ -24,12 +24,12 @@ with DAG(
 
     task_silver_transform_breweries = BashOperator(
         task_id="silver_transform_breweries",
-        bash_command=ipynb_command("silver_001_breweries")
+        bash_command=ipynb_command(layer="2_silver", app_name="silver_001_breweries")
     )
 
     task_gold_transform_breweries = BashOperator(
         task_id="gold_transform_breweries",
-        bash_command=ipynb_command("gold_001_breweries")
+        bash_command=ipynb_command(layer="3_gold", app_name="gold_001_breweries")
     )
 
     task_publish_metadata = PythonOperator(
