@@ -1,7 +1,6 @@
 venv
-logs
-airflow/dags/__pycache__
 airflow/logs
+airflow/dags/__pycache__
 airflow/dags/tasks/__pycache__
 airflow/dags/classes/__pycache__
 spark/notebooks/.ipynb_checkpoints
