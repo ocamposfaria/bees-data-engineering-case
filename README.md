@@ -103,8 +103,10 @@ docker compose -f streamlit/docker-compose.streamlit.yaml up --build -d
 ## Live Preview
 ### Airflow
 ![alt text](images/image-2.png)
+### Jupyter
+![alt text](images/image-6.png)
 ### Streamlit AI Assistant
-![alt text](images/image-3.png)
+![alt text](images/image-33.png)
 
 ## Contact
 
