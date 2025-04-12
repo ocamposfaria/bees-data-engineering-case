@@ -1,5 +1,3 @@
-papermill
-apache-airflow-providers-papermill
 apache-airflow-providers-apache-spark
 ipython
 notebook
