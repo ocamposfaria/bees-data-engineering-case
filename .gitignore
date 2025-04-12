@@ -13,3 +13,4 @@ spark/notebooks/1_bronze/.ipynb_checkpoints
 spark/notebooks/2_silver/.ipynb_checkpoints
 spark/notebooks/3_gold/.ipynb_checkpoints
 airflow/dags/__pycache__
+config.env
