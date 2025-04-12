@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  streamlit:
+    build:
+      context: .  # Diretório onde está o Dockerfile (o ponto final refere-se ao diretório atual)
+      dockerfile: Dockerfile  # Especificando o caminho do Dockerfile
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./gold_metadata:/app/gold_metadata  # Mapeando o volume para a pasta gold_metadata
+    environment:
+      - PYTHONUNBUFFERED=1  # Para garantir que o Streamlit exiba os logs corretamente
+    networks:
+      - project-net
+      
+networks:
+  project-net:
+    external: true

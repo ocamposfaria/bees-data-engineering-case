@@ -1,0 +1,7 @@
+streamlit
+openai
+pyarrow
+pandas
+duckdb
+sqlparse
+tabulate

@@ -15,7 +15,7 @@ st.markdown(
 )
 
 # Configurar cliente OpenAI (ideal passar a chave via secrets ou env var)
-client = OpenAI(api_key="")
+client = OpenAI(api_key="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")
 
 # Nome da tabela que será usada no DuckDB
 tabela_nome = "breweries_by_type_location"
@@ -95,7 +95,7 @@ if prompt := st.chat_input("Me pergunte sobre dados na camada gold!"):
                 minio_fs = pyarrow.fs.S3FileSystem(
                     access_key='ROOTUSER',
                     secret_key='CHANGEME123',
-                    endpoint_override='http://localhost:9000',
+                    endpoint_override='http://minio:9000',
                     region='us-east-1'
                 )
 
