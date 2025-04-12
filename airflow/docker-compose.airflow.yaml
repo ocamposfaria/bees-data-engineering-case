@@ -64,7 +64,7 @@ x-airflow-common:
     AIRFLOW__SMTP__SMTP_HOST: smtp.gmail.com
     AIRFLOW__SMTP__SMTP_PORT: 587
     AIRFLOW__SMTP__SMTP_USER: ocamposfaria@gmail.com
-    AIRFLOW__SMTP__SMTP_PASSWORD: ucco qkvm triz vxwr
+    AIRFLOW__SMTP__SMTP_PASSWORD: cstb bzyd pmsf ssax
     AIRFLOW__SMTP__SMTP_MAIL_FROM: ocamposfaria@gmail.com
     # yamllint disable rule:line-length
     # Use simple http server on scheduler for health checks
