@@ -7,8 +7,6 @@ from openai import OpenAI
 import pyarrow.dataset as ds
 import pyarrow.fs
 
-print(st.session_state.messages)
-
 # Título e subtítulo
 st.title("Ourinho da ABInBev 🤖🍺")
 st.markdown(
@@ -165,3 +163,6 @@ if prompt := st.chat_input("Me pergunte sobre dados na camada gold!"):
                 "content": info_message
             })
             st.write(info_message)
+
+# para debug
+# print(st.session_state.messages)
