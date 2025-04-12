@@ -1,15 +1,8 @@
 from classes.breweries import Breweries
 from classes.minio import MinioClient
 import logging
-
-def ipynb_command(app_name: str) -> str:
-    ipynb_path = f"/opt/spark-apps/2_silver/{app_name}.ipynb"
-    py_path = f"/opt/spark-apps/2_silver/{app_name}.py"
-    return (
-        f'docker exec spark-spark-master-1 bash -c '
-        f'"jupyter nbconvert --to script {ipynb_path} && '
-        f'/opt/spark/bin/spark-submit --master spark://spark-spark-master-1:7077 local://{py_path}"'
-    )
+import os
+import shutil
 
 def bronze_extract_breweries():
     b = Breweries()
@@ -22,3 +15,25 @@ def bronze_extract_metadata():
     metadata = b.get_breweries_metadata()
     logging.info(f"Metadados extraídos: {metadata}")
     MinioClient().upload_json("datalake", "1_bronze/001_breweries/metadata.json", metadata)
+
+def ipynb_command(app_name: str) -> str:
+    ipynb_path = f"/opt/spark-apps/2_silver/{app_name}.ipynb"
+    py_path = f"/opt/spark-apps/2_silver/{app_name}.py"
+    return (
+        f'docker exec spark-spark-master-1 bash -c '
+        f'"jupyter nbconvert --to script {ipynb_path} && '
+        f'/opt/spark/bin/spark-submit --master spark://spark-spark-master-1:7077 local://{py_path}"'
+    )
+
+def publish_metadata():
+    # isso aqui seria ajustado para capturar os metadados de todas as tabelas da camada gold
+    # por enquanto ele só pega do pipeline 001_breweries
+    source_path = "/opt/airflow/spark/notebooks/3_gold/gold_001_breweries.json"
+    destination_path = "/opt/airflow/streamlit/gold_metadata/gold_001_breweries.json"
+
+    if os.path.exists(source_path):
+        os.makedirs(os.path.dirname(destination_path), exist_ok=True)
+        shutil.copy(source_path, destination_path)
+        print(f"Arquivo copiado para {destination_path}")
+    else:
+        print(f"Arquivo de origem {source_path} não encontrado.")
