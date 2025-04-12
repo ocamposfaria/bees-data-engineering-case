@@ -1,6 +1,6 @@
 
 # BEES & ABInBev Data Engineering Challenge
-![alt text](images/image-5.png)
+![alt text](images/image.png)
 
 <div align="center">
 
