@@ -1,6 +1,6 @@
 
 # BEES & ABInBev Data Engineering Challenge
-![alt text](image-5.png)
+![alt text](images/image-5.png)
 
 <div align="center">
 
@@ -102,9 +102,9 @@ docker compose -f streamlit/docker-compose.streamlit.yaml up --build -d
 ```
 ## Live Preview
 ### Airflow
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 ### Streamlit AI Assistant
-![alt text](image-3.png)
+![alt text](images/image-3.png)
 
 ## Contact
 
