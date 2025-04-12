@@ -15,7 +15,7 @@ st.markdown(
 )
 
 # Configurar cliente OpenAI (ideal passar a chave via secrets ou env var)
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="")
 
 # Nome da tabela que será usada no DuckDB
 tabela_nome = "breweries_by_type_location"
