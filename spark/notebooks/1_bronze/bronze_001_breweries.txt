@@ -1,0 +1,1 @@
+A ingestão de dados na camada bronze via API não é feita com Spark, mas sim com Python puro (requests). Por isso o código não está escrito aqui, está no caminho airflow/dags/classes do projeto.
