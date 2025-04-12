@@ -109,6 +109,8 @@ docker compose -f streamlit/docker-compose.streamlit.yaml up --build -d
 ## Contact
 
 Made with ☕ by [**João Pedro Campos Faria**](https://www.linkedin.com/in/ocamposfaria)  
+
 <p align="left">
-  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Typing cat" width="200"/>
+  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Typing cat" width="150"/>
 </p>
+ 
