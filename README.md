@@ -1,6 +1,4 @@
 
-
-
 # BEES & ABInBev Data Engineering Challenge
 ![alt text](image-5.png)
 
@@ -12,54 +10,53 @@
   <img src="https://img.shields.io/badge/MinIO-Object_Storage-red?logo=minio" alt="MinIO"/>
   <img src="https://img.shields.io/badge/Streamlit-Chat-ff4b4b?logo=streamlit" alt="Streamlit"/>
   <img src="https://img.shields.io/badge/OpenAI-API-black?logo=openai" alt="OpenAI"/>
-    <img src="https://img.shields.io/badge/Docker-Compose-8e44ad?logo=docker" alt="Docker"/>
+  <img src="https://img.shields.io/badge/Docker-Compose-8e44ad?logo=docker" alt="Docker"/>
 
 </div>
 
+## Project Description
 
-## Descrição do Projeto
+This project was developed as part of the BEES & ABInBev Data Engineering technical challenge. Its main goal is to demonstrate the ability to build a modern, robust, and modular data pipeline using the medallion architecture (bronze, silver, and gold), from ingestion to interactive data visualization.
 
-Este projeto foi desenvolvido como parte do desafio técnico de Engenharia de Dados da BEES & ABInBev. Seu principal objetivo é demonstrar a capacidade de construir um pipeline de dados moderno, robusto e modular, utilizando a arquitetura medallion (bronze, silver e gold), desde a ingestão até a visualização interativa dos dados.
+### Context
 
-### Contextualização
+Using the public API [Open Brewery DB](https://www.openbrewerydb.org/), which contains data on American breweries, the data is extracted, stored in a data lake, transformed, and later aggregated following data engineering best practices.
 
-A partir da API pública [Open Brewery DB](https://www.openbrewerydb.org/), que contém dados de cervejarias norte-americanas, os dados são extraídos, armazenados em um data lake, transformados e posteriormente agregados, seguindo boas práticas de engenharia de dados.
+### Key Features
 
-### Principais Funcionalidades
+- **Data Extraction**
+  - Automated collection using Python `requests`
+  - Pipeline orchestration and monitoring with Airflow
+  - Retries and/or email notifications in case of failure
 
-- **Extração de dados**
-  - Coleta automatizada via Python `requests`
-  - Orquestração e monitoramento do pipeline com Airflow
-  - Retries e/ou envio de e-mails em caso de falhas
+- **Storage in Data Lake (MinIO)**
+  - Bronze Layer: raw data
+  - Silver Layer: cleaned and partitioned Parquet data by location
+  - Gold Layer: data aggregated by type and state
 
-- **Armazenamento em Data Lake (MinIO)**
-  - Camada Bronze: dados brutos
-  - Camada Silver: dados em Parquet, limpos e particionados por localização
-  - Camada Gold: dados agregados por tipo e estado
+- **Transformations with PySpark in Jupyter Notebooks**
+  - Cleaning, partitioning, and aggregation
+  - Organized in notebooks for each layer
 
-- **Transformações com PySpark em Jupyter Notebooks**
-  - Limpeza, particionamento e agregação
-  - Organização em notebooks para cada camada
+- **Data Visualization with Streamlit and ChatGPT**
+  - AI assistant via chat interface with Streamlit
+  - Integration with the OpenAI API
 
-- **Visualização dos dados com Streamlit e ChatGPT**
-  - Assistente de IA via interface de chat com Streamlit
-  - Integração com a API da OpenAI 
+- **Containerization with Docker**
+  - Services organized using Docker Compose
+  - Easy local reproducibility
 
-- **Containerização com Docker**
-  - Serviços organizados via Docker Compose
-  - Facilidade de reprodutibilidade local
+## Prerequisites
 
-## Pré-requisitos
+Before running the project, make sure you have:
 
-Antes de rodar o projeto, verifique se você possui:
+- **Docker** installed (and Docker Compose)
 
-- **Docker** instalado (e Docker Compose):
+- **Minimum hardware requirements**:
+  - CPU: 4 cores
+  - RAM: 12 GB (ideally 16 GB)
 
-- **Requisitos mínimos de hardware**:
-  - CPU: 4 núcleos
-  - Memória RAM: 12 GB (idealmente 16 GB)
-
-## Como executar o projeto?
+## How to run the project?
 
 ```bash
 docker network create project-net
@@ -103,23 +100,15 @@ docker compose -f streamlit/docker-compose.streamlit.yaml up --build -d
 └── images/
 
 ```
-## Preview em funcionamento
+## Live Preview
 ### Airflow
 ![alt text](image-2.png)
 ### Streamlit AI Assistant
 ![alt text](image-3.png)
 
+## Contact
 
-
-## Licença
-
-Este projeto está licenciado sob a Licença MIT.
-
-
-
-## Contato
-
-Feito com ☕ por [**João Pedro Campos Faria**](https://www.linkedin.com/in/ocamposfaria)  
+Made with ☕ by [**João Pedro Campos Faria**](https://www.linkedin.com/in/ocamposfaria)  
 <p align="left">
-  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Gato digitando" width="200"/>
+  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Typing cat" width="200"/>
 </p>
