@@ -66,7 +66,7 @@ docker compose -f spark/docker-compose.spark.yaml up --build -d
 docker compose -f streamlit/docker-compose.streamlit.yaml up --build -d
 ```
 
-## Estrutura de pastas
+## Folder Structure
 ```
 .
 ├── airflow/
