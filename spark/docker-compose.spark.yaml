@@ -13,6 +13,8 @@ services:
     environment:
       - SPARK_LOCAL_IP=spark-master
       - SPARK_WORKLOAD=master
+    env_file:
+      - ../config.env
     networks:
       - project-net
 
@@ -34,6 +36,8 @@ services:
       - SPARK_EXECUTOR_MEMORY=1G
       - SPARK_WORKLOAD=worker
       - SPARK_LOCAL_IP=spark-worker-a
+    env_file:
+      - ../config.env
     volumes:
        - ./notebooks:/opt/spark-apps
        # - ./data:/opt/spark-data
@@ -58,6 +62,8 @@ services:
       - SPARK_EXECUTOR_MEMORY=1G
       - SPARK_WORKLOAD=worker
       - SPARK_LOCAL_IP=spark-worker-b
+    env_file:
+      - ../config.env
     volumes:
         - ./notebooks:/opt/spark-apps
         # - ./data:/opt/spark-data
