@@ -27,7 +27,7 @@ Using the public API [Open Brewery DB](https://www.openbrewerydb.org/), which co
 - **Data Extraction**
   - Automated collection using Python `requests`
   - Pipeline orchestration and monitoring with Airflow
-  - Retries and/or email notifications in case of failure
+  - Retries and/or e-mail notifications in case of failure
 
 - **Storage in Data Lake (MinIO)**
   - Bronze Layer: raw data
@@ -60,10 +60,10 @@ Before running the project, make sure you have:
 
 ```bash
 docker network create project-net
-docker compose -f minio/docker-compose.minio.yaml --env-file minio/.env up --build -d
-docker compose -f airflow/docker-compose.airflow.yaml up --build -d
-docker compose -f spark/docker-compose.spark.yaml up --build -d
-docker compose -f streamlit/docker-compose.streamlit.yaml up --build -d
+docker compose -f airflow/docker-compose.airflow.yaml --env-file ./config.env up --build -d
+docker compose -f minio/docker-compose.minio.yaml --env-file ./config.env up --build -d
+docker compose -f spark/docker-compose.spark.yaml --env-file ./config.env up --build -d
+docker compose -f streamlit/docker-compose.streamlit.yaml --env-file ./config.env up --build -d
 ```
 
 ## Folders Structure

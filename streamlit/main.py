@@ -6,6 +6,7 @@ import json
 from openai import OpenAI
 import pyarrow.dataset as ds
 import pyarrow.fs
+import os
 
 # Título e subtítulo
 st.title("Ourinho da ABInBev 🤖🍺")
@@ -15,7 +16,7 @@ st.markdown(
 )
 
 # Configurar cliente OpenAI (ideal passar a chave via secrets ou env var)
-client = OpenAI(api_key="")
+client = OpenAI(api_key=os.getenv("OPEN_AI_KEY"))
 
 # Nome da tabela que será usada no DuckDB
 tabela_nome = "breweries_by_type_location"
@@ -93,8 +94,8 @@ if prompt := st.chat_input("Me pergunte sobre dados na camada gold!"):
             try:
                 # Carrega o dataset APENAS quando a query for válida
                 minio_fs = pyarrow.fs.S3FileSystem(
-                    access_key='ROOTUSER',
-                    secret_key='CHANGEME123',
+                    access_key=os.getenv("MINIO_ROOT_USER"),
+                    secret_key=os.getenv("MINIO_ROOT_PASSWORD"),
                     endpoint_override='http://minio:9000',
                     region='us-east-1'
                 )

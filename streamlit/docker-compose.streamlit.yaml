@@ -9,6 +9,8 @@ services:
       - "8501:8501"
     volumes:
       - ./gold_metadata:/app/gold_metadata  # Mapeando o volume para a pasta gold_metadata
+    env_file:
+      - ../config.env
     environment:
       - PYTHONUNBUFFERED=1  # Para garantir que o Streamlit exiba os logs corretamente
     networks:

@@ -62,8 +62,10 @@ services:
     volumes:
       - ./notebooks:/home/jovyan/
       # - ./data:/home/jovyan/data
+    env_file:
+      - ../config.env
     environment:
-      - JUPYTER_TOKEN=password123
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
       - PYSPARK_SUBMIT_ARGS=--packages org.apache.hadoop:hadoop-aws:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.11.1026 pyspark-shell
     depends_on:
       - spark-master
