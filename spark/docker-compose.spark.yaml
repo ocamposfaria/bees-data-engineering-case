@@ -1,6 +1,9 @@
 services:
   spark-master:
     image: our-own-apache-spark
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "9090:8080"
       - "7077:7077"
@@ -15,6 +18,9 @@ services:
 
   spark-worker-a:
     image: our-own-apache-spark
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "9091:8080"
       - "7000:7000"
@@ -36,6 +42,9 @@ services:
       
   spark-worker-b:
     image: our-own-apache-spark
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "9092:8080"
       - "7001:7000"
