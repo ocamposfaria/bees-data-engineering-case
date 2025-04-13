@@ -75,6 +75,8 @@ cp config-example.env config.env
 
 - Then edit the `config.env` file and replace the placeholder values with your own.
 
+- **If you received a `config.env` file via email as part of the recruitment process, place it directly in the root of the repository instead of creating a new one.**
+
 3. **Create the shared Docker network:**
 
 ```bash
