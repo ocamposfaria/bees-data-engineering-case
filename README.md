@@ -56,15 +56,47 @@ Before running the project, make sure you have:
   - CPU: 4 cores
   - RAM: 12 GB (ideally 16 GB)
 
-## How to run the project?
+## How to Run the Project
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/ocamposfaria/bees-data-engineering-case.git
+cd bees-data-engineering-case
+```
+
+2. **Set up environment variables:**
+
+- Create your own environment configuration file by copying the example to a `config.env` file:
+
+```bash
+cp config-example.env config.env
+```
+
+- Then edit the `config.env` file and replace the placeholder values with your own.
+
+3. **Create the shared Docker network:**
 
 ```bash
 docker network create project-net
+```
+
+4. **Start the project services:**
+
+```bash
 docker compose -f airflow/docker-compose.airflow.yaml --env-file ./config.env up --build -d
 docker compose -f minio/docker-compose.minio.yaml --env-file ./config.env up --build -d
 docker compose -f spark/docker-compose.spark.yaml --env-file ./config.env up --build -d
 docker compose -f streamlit/docker-compose.streamlit.yaml --env-file ./config.env up --build -d
 ```
+
+5. **Access the services at the following URLs:**
+
+- Airflow: [http://localhost:8080/home](http://localhost:8080/home)  
+- JupyterLab: [http://localhost:8888/lab](http://localhost:8888/lab)  
+- Streamlit: [http://localhost:8501](http://localhost:8501)  
+- Spark Master UI: [http://localhost:9090](http://localhost:9090)
+
 
 ## Folders Structure
 ```
