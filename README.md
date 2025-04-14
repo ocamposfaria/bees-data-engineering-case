@@ -94,7 +94,8 @@ docker compose -f streamlit/docker-compose.streamlit.yaml --env-file ./config.en
 
 5. **Access the services at the following URLs:**
 
-- Airflow: [http://localhost:8080/home](http://localhost:8080/home)  
+- Airflow: [http://localhost:8080/home](http://localhost:8080/home)
+- MinIO: [http://localhost:9001](http://localhost:9001)
 - JupyterLab: [http://localhost:8888/lab](http://localhost:8888/lab)  
 - Streamlit: [http://localhost:8501](http://localhost:8501)  
 - Spark Master UI: [http://localhost:9090](http://localhost:9090)
@@ -113,7 +114,6 @@ docker compose -f streamlit/docker-compose.streamlit.yaml --env-file ./config.en
 │   └── docker-compose.airflow.yaml
 │
 ├── minio/
-│   ├── .env
 │   └── docker-compose.minio.yaml
 │
 ├── spark/
