@@ -14,3 +14,5 @@ spark/notebooks/2_silver/.ipynb_checkpoints
 spark/notebooks/3_gold/.ipynb_checkpoints
 airflow/dags/__pycache__
 config.env
+terraform/.terraform
+terraform/.terraform.lock.hcl
