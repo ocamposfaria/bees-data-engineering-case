@@ -14,12 +14,6 @@
 
 </div>
 
-## Demonstration Video
-
-![alt text](image.png)
-
-URL: https://youtu.be/kI6oFgfnMZU
-
 
 ## Project Description
 
@@ -62,6 +56,12 @@ Before running the project, make sure you have:
 - **Minimum hardware requirements**:
   - CPU: 4 cores
   - RAM: 12 GB (ideally 16 GB)
+
+## Demonstration Video
+
+![alt text](image.png)
+
+URL: https://youtu.be/kI6oFgfnMZU
 
 ## How to Run the Project
 
