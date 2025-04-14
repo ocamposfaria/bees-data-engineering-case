@@ -14,6 +14,13 @@
 
 </div>
 
+## Demonstration Video
+
+![alt text](image.png)
+
+URL: https://youtu.be/kI6oFgfnMZU
+
+
 ## Project Description
 
 This project was developed as part of the BEES & ABInBev Data Engineering technical challenge. Its main goal is to demonstrate the ability to build a modern, robust, and modular data pipeline using the medallion architecture (bronze, silver, and gold), from ingestion to interactive data visualization.
