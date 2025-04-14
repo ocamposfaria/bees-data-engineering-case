@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Comente essa linha se o arquivo não existir
-# . "/opt/spark/bin/load-spark-env.sh"
-
 if [ "$SPARK_WORKLOAD" == "master" ]; then
     export SPARK_MASTER_HOST=$(hostname)
 
