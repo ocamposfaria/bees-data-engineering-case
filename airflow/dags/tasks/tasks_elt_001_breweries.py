@@ -38,3 +38,6 @@ def publish_metadata():
         print(f"Arquivo copiado para {destination_path}")
     else:
         print(f"Arquivo de origem {source_path} não encontrado.")
+
+def fail_task():
+    raise Exception("Falha proposital para testar envio de e-mail.")

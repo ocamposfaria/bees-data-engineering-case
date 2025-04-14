@@ -7,7 +7,8 @@ from tasks.tasks_elt_001_breweries import (
     bronze_extract_breweries,
     bronze_extract_metadata,
     ipynb_command,
-    publish_metadata
+    publish_metadata,
+    fail_task
 )
 
 default_args = {
@@ -51,6 +52,12 @@ with DAG(
         python_callable=publish_metadata
     )
 
+    task_fail = PythonOperator(
+        task_id="this_task_should_fail",
+        python_callable=fail_task,
+    )
+
     [task_bronze_extract_breweries, task_bronze_extract_metadata] >> task_silver_transform_breweries
     task_silver_transform_breweries >> task_gold_transform_breweries
     task_gold_transform_breweries >> task_publish_metadata
+    task_publish_metadata >> task_fail
