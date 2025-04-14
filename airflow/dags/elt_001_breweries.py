@@ -1,3 +1,4 @@
+import os
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
@@ -10,7 +11,7 @@ from tasks.tasks_elt_001_breweries import (
 )
 
 default_args = {
-    "email": ["ocamposfaria@gmail.com"],
+    "email": [os.getenv("AIRFLOW_ON_FAILED_EMAIL")],
     "email_on_failure": True,
     "email_on_success": False,
     "retries": 0
