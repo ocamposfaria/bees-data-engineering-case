@@ -59,7 +59,7 @@ Before running the project, make sure you have:
 
 ## Demonstration Video
 
-![alt text](image.png)
+![alt text](images/image.png)
 
 URL: https://youtu.be/kI6oFgfnMZU
 
