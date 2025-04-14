@@ -84,6 +84,17 @@ cp config-example.env config.env
 
 - **If you received a `config.env` file via email as part of the recruitment process, place it directly in the root of the repository instead of creating a new one.**
 
+- **Important:** Make sure the file `spark/start-spark.sh` uses **LF** line endings (Unix-style), not **CRLF** (Windows-style).  
+If you're using VSCode on Windows, follow these steps:
+
+    1. Open the file `spark/start-spark.sh` in VSCode.  
+    2. In the bottom-right corner, click on `CRLF`.  
+    3. Select `LF` from the dropdown menu.  
+    4. Save the file (`Ctrl+S`).
+
+This step is required to ensure the script runs correctly inside Docker containers.
+
+
 3. **Create the shared Docker network:**
 
 ```bash
